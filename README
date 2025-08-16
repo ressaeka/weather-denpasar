@@ -1,102 +1,99 @@
-# 🌤️ Prediksi Cuaca Denpasar
+🌤️ Prediksi Cuaca Denpasar
 
-## 📌 Deskripsi Proyek
-Proyek ini menganalisis tren cuaca di Denpasar menggunakan data historis dari **BMKG**.  
-Selain analisis deskriptif, proyek ini juga memprediksi **Suhu, Curah Hujan, Kelembaban, Angin, Awan**, serta **kategori cuaca** menggunakan Machine Learning.  
-Hasilnya memberikan insight praktis untuk masyarakat maupun pihak terkait.
+Prediksi Cuaca Denpasar adalah proyek analisis dan prediksi cuaca menggunakan data historis dari BMKG. Proyek ini memprediksi Suhu, Curah Hujan, Kelembaban, Angin, Awan, serta kategori cuaca dengan Machine Learning, sekaligus memberikan insight praktis untuk perencanaan kegiatan.
 
----
+🎯 Tujuan
 
-## 🎯 Tujuan
-* Mengidentifikasi pola cuaca di Denpasar selama beberapa tahun terakhir  
-* Melihat tren perubahan **Suhu, Kelembaban, Kecepatan Angin, Tutupan Awan, dan Curah Hujan**  
-* Memprediksi kondisi cuaca mendatang berdasarkan data historis  
-* Memberikan rekomendasi praktis untuk perencanaan kegiatan yang dipengaruhi cuaca
+Mengidentifikasi pola cuaca Denpasar selama beberapa tahun terakhir
 
----
+Melihat tren perubahan Suhu, Kelembaban, Kecepatan Angin, Tutupan Awan, dan Curah Hujan
 
-## 📂 Sumber Data
-Dataset: **Prediksi Cuaca Denpasar**
+Memprediksi kondisi cuaca mendatang berdasarkan data historis
 
-* **Link Kaggle**: [Denpasar Weather in 1990-2019](https://www.kaggle.com/code/mdsatria/denpasar-weather-in-1990-2019)  
-* Format `.csv`:
-  * `cuaca_clean.csv` — Data cuaca Denpasar yang sudah dibersihkan  
-  * Kolom:
-    * `Tanggal` (datetime)  
-    * `Suhu` (°C)  
-    * `Curah_Hujan` (mm)  
-    * `Kelembaban` (%)  
-    * `Angin` (m/s)  
-    * `Awan` (%)
+Memberikan rekomendasi praktis untuk perencanaan kegiatan yang dipengaruhi cuaca
 
----
+📂 Sumber Data
 
-## 🛠️ Langkah Analisis
-1. **Import & Eksplorasi Data**  
-   * Membaca dataset `.csv` dengan `pandas`  
-   * Mengecek info awal data (`head()`, `info()`, `describe()`)
+Dataset: Prediksi Cuaca Denpasar
 
-2. **Data Cleaning**  
-   * Mengubah kolom `Tanggal` ke tipe `datetime`  
-   * Menangani nilai kosong (*missing values*), khususnya `Curah_Hujan` yang bisa diisi 0 bila kosong semua
+Link Kaggle: Denpasar Weather in 1990-2019
 
-3. **Exploratory Data Analysis (EDA)**  
-   * Statistik deskriptif:  
-     * Jumlah data: **264.924 baris**  
-     * Suhu rata-rata: **27,27°C**  
-     * Kelembaban rata-rata: **80,84%**  
-     * Kecepatan angin rata-rata: **3,61 m/s**  
-     * Tutupan awan rata-rata: **38,48%**  
-   * Visualisasi distribusi dan tren masing-masing variabel numeric menggunakan **Matplotlib** & **Seaborn**
+Format .csv:
 
-4. **Pembuatan Model Prediksi**  
-   * **Regresi**: prediksi semua kolom numeric (`Suhu, Curah Hujan, Kelembaban, Angin, Awan`) menggunakan **LinearRegression + SimpleImputer**  
-   * **Klasifikasi**: prediksi kategori cuaca (`Cerah, Berawan, Hujan`) menggunakan **RandomForestClassifier**  
-   * Evaluasi model:  
-     * **MSE Regresi**: setiap kolom numeric dicatat masing-masing  
-     * **Akurasi Klasifikasi**: mendekati 100% karena aturan label sederhana
+cuaca_clean.csv — Data cuaca Denpasar yang sudah dibersihkan
 
-5. **Prediksi & Visualisasi**  
-   * Prediksi semua kolom numeric untuk seluruh dataset  
-   * Prediksi kategori cuaca untuk seluruh dataset  
-   * Visualisasi tren:  
-     * Suhu aktual vs prediksi  
-     * Curah hujan  
-     * Distribusi semua kolom numeric
+Kolom:
 
-6. **Interpretasi Hasil**  
-   * Insight suhu, kelembaban, kecepatan angin, dan awan untuk perencanaan kegiatan  
-   * Dataset dan model siap digunakan untuk prediksi cuaca beberapa hari ke depan
+Tanggal (datetime)
 
----
+Suhu (°C)
 
-## 📊 Contoh Prediksi (5 Baris Pertama)
+Curah_Hujan (mm)
 
-| Tanggal | Suhu | Kelembaban | Curah_Hujan | Angin | Awan | Pred_Suhu | Pred_Curah_Hujan | Pred_Kelembaban | Pred_Angin | Pred_Awan | Pred_Kategori |
-|---------|------|------------|-------------|-------|------|-----------|-----------------|----------------|------------|-----------|---------------|
-| 1970-01-01 00:00:00 | 25.82 | 86 | 0 | 3.5 | 98 | 26.03 | 0 | 85 | 3.6 | 97 | Hujan |
-| 1970-01-01 00:00:00 | 26.20 | 84 | 0 | 3.7 | 91 | 26.36 | 0 | 83 | 3.6 | 92 | Hujan |
-| 1970-01-01 00:00:00 | 26.45 | 84 | 0 | 3.6 | 94 | 26.49 | 0 | 83 | 3.7 | 93 | Hujan |
-| 1970-01-01 00:00:00 | 26.80 | 82 | 0 | 3.8 | 94 | 27.06 | 0 | 81 | 3.7 | 95 | Hujan |
-| 1970-01-01 00:00:00 | 27.04 | 82 | 0 | 3.9 | 76 | 26.92 | 0 | 81 | 3.8 | 77 | Hujan |
+Kelembaban (%)
 
----
+Angin (m/s)
 
-## 📝 Kesimpulan
-* Suhu di Denpasar relatif stabil di kisaran **26–28°C**  
-* Kelembaban tinggi (>80%) mendukung karakteristik iklim tropis lembab  
-* Tutupan awan rata-rata sekitar **38,48%**, mayoritas kategori **Hujan**  
-* Curah hujan tersedia dalam dataset, namun prediksi curah hujan bisa dikembangkan lebih lanjut  
-* Dataset dan model siap digunakan untuk prediksi semua kolom numeric dan kategori cuaca, dengan potensi perluasan ke indikator cuaca lain
+Awan (%)
 
----
+🛠️ Langkah Analisis
 
-## 💻 Teknologi yang Digunakan
-* Python 3.x  
-* Pandas  
-* Matplotlib & Seaborn  
-* Scikit-learn (LinearRegression + RandomForestClassifier)
+Import & Eksplorasi Data
 
----
+Membaca dataset .csv dengan pandas
 
-✍️ Dibuat oleh: Ressa
+Mengecek info awal data (head(), info(), describe())
+
+Data Cleaning
+
+Mengubah kolom Tanggal ke tipe datetime
+
+Menangani nilai kosong (missing values)
+
+Exploratory Data Analysis (EDA)
+
+Statistik deskriptif:
+
+Jumlah data: 264.924 baris
+
+Suhu rata-rata: 27,27°C
+
+Kelembaban rata-rata: 80,84%
+
+Kecepatan angin rata-rata: 3,61 m/s
+
+Tutupan awan rata-rata: 38,48%
+
+Visualisasi distribusi & tren tiap variabel numeric dengan Matplotlib & Seaborn
+
+Pembuatan Model Prediksi
+
+Regresi: prediksi semua kolom numeric (Suhu, Curah Hujan, Kelembaban, Angin, Awan) menggunakan LinearRegression + SimpleImputer
+
+Klasifikasi: prediksi kategori cuaca (Cerah, Berawan, Hujan) menggunakan RandomForestClassifier
+
+Evaluasi model:
+
+MSE Regresi untuk setiap kolom numeric
+
+Akurasi Klasifikasi mendekati 100%
+
+Prediksi & Visualisasi
+
+Prediksi semua kolom numeric & kategori cuaca untuk seluruh dataset
+
+Visualisasi tren:
+
+Suhu aktual vs prediksi
+
+Curah hujan
+
+Distribusi semua kolom numeric
+
+📊 Contoh Prediksi (5 Baris Pertama)
+Tanggal	Suhu	Kelembaban	Curah_Hujan	Angin	Awan	Pred_Suhu	Pred_Curah_Hujan	Pred_Kelembaban	Pred_Angin	Pred_Awan	Pred_Kategori
+1970-01-01	25.82	86	0	3.5	98	26.03	0	85	3.6	97	Hujan
+1970-01-01	26.20	84	0	3.7	91	26.36	0	83	3.6	92	Hujan
+1970-01-01	26.45	84	0	3.6	94	26.49	0	83	3.7	93	Hujan
+1970-01-01	26.80	82	0	3.8	94	27.06	0	81	3.7	95	Hujan
+1970-01-01	27.04	82	0	3.9	76	26.92	0	81	3.8	77	Hujan
